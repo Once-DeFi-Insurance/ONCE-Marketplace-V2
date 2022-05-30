@@ -30,7 +30,7 @@ function NFTBalance() {
   const [loading, setLoading] = useState(false);
   const contractProcessor = useWeb3ExecuteFunction();
   const contractABIJson = JSON.parse(contractABI);
-  const listItemFunction = "createMarketItem";
+  const listItemFunction = "putItemForSale";
   const ItemImage = Moralis.Object.extend("ItemImages");
 
   async function list(nft, listPrice) {
@@ -40,8 +40,8 @@ function NFTBalance() {
       contractAddress: marketAddress,
       functionName: listItemFunction,
       abi: contractABIJson,
+      msgValue: Moralis.Units.ETH((0.01).toString()),
       params: {
-        nftContract: nft.token_address,
         tokenId: nft.token_id,
         price: String(p),
       },
@@ -59,6 +59,7 @@ function NFTBalance() {
       onError: (error) => {
         setLoading(false);
         failList();
+        alert(error);
       },
     });
   }

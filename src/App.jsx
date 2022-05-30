@@ -55,7 +55,7 @@ const App = ({ isServerInfo }) => {
 
 
 
-  const [inputValue, setInputValue] = useState("0x2ad359e43F43D01322f6d3aEea546E7e0f4709E1");
+  const [inputValue, setInputValue] = useState("0x088c7926674E1c57ABD87B31844a58b30765f791");
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
