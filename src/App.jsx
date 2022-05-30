@@ -12,7 +12,6 @@ import Chains from "components/Chains";
 import NFTBalance from "components/NFTBalance";
 import NFTTokenIds from "components/NFTTokenIds";
 import { Menu, Layout} from "antd";
-import SearchCollections from "components/SearchCollections";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
@@ -56,7 +55,7 @@ const App = ({ isServerInfo }) => {
 
 
 
-  const [inputValue, setInputValue] = useState("explore");
+  const [inputValue, setInputValue] = useState("0x2ad359e43F43D01322f6d3aEea546E7e0f4709E1");
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
@@ -68,7 +67,6 @@ const App = ({ isServerInfo }) => {
       <Router>
         <Header style={styles.header}>
           <Logo />
-          <SearchCollections setInputValue={setInputValue}/>
           <Menu
             theme="light"
             mode="horizontal"
