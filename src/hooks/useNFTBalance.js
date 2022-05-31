@@ -13,7 +13,7 @@ export const useNFTBalance = (options) => {
     data,
     error,
     isLoading,
-  } = useMoralisWeb3ApiCall(account.getNFTs, { chain: chainId, ...options, token_address: "0x088c7926674E1c57ABD87B31844a58b30765f791"});
+  } = useMoralisWeb3ApiCall(account.getNFTs, { chain: chainId, ...options, token_address: "0x6fc962cD4058035Fe4C89b00C8AB082c978A4929"});
   const [fetchSuccess, setFetchSuccess] = useState(true);
 
   useEffect(async () => {
