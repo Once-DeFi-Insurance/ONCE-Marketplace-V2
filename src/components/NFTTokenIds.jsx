@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import NFTImage from "./NFTImage.png";
+import OnceLogo from "./submit.png";
 import { getNativeByChain } from "helpers/networks";
 import { getCollectionsByChain } from "helpers/collections";
 import {
@@ -68,7 +70,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   const nativeName = getNativeByChain(chainId);
   const contractABIJson = JSON.parse(contractABI);
   const { Moralis } = useMoralis();
-  const queryMarketItems = useMoralisQuery("itemAddedForSaleFinals");
+  const queryMarketItems = useMoralisQuery("itemAddedForSale");
   const fetchMarketItems = JSON.parse(
     JSON.stringify(queryMarketItems.data, [
       "objectId",
@@ -80,7 +82,11 @@ function NFTTokenIds({ inputValue, setInputValue }) {
       "tokenId",
       "seller",
       "owner",
+      "payoutAmount",
       "confirmed",
+      "newItemId",
+      "uid_decimal",
+      "uid"
     ])
   );
   const purchaseItemFunction = "buyItem";
@@ -89,15 +95,14 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   async function purchase() {
     setLoading(true);
     const tokenDetails = getMarketItem(nftToBuy);
-    const itemID = tokenDetails.itemId;
+    const itemID = tokenDetails.uid;
     const tokenPrice = tokenDetails.price;
     const ops = {
       contractAddress: marketAddress,
       functionName: purchaseItemFunction,
       abi: contractABIJson,
       params: {
-        nftContract: nftToBuy.token_address,
-        itemId: itemID,
+        id: itemID,
       },
       msgValue: tokenPrice,
     };
@@ -148,7 +153,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
 
   async function updateSoldMarketItem() {
     const id = getMarketItem(nftToBuy).objectId;
-    const marketList = Moralis.Object.extend("itemAddedForSaleFinals");
+    const marketList = Moralis.Object.extend("itemAddedForSale");
     const query = new Moralis.Query(marketList);
     await query.get(id).then((obj) => {
       obj.set("sold", true);
@@ -161,8 +166,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
     const result = fetchMarketItems?.find(
       (e) =>
         e.tokenId === nft?.token_id &&
-        e.sold === false &&
-        e.confirmed === true
+        e.sold === false
     );
     return result;
   };
@@ -181,19 +185,10 @@ function NFTTokenIds({ inputValue, setInputValue }) {
         )}
         {inputValue !== "explore" && totalNFTs !== undefined && (
           <>
-            {!fetchSuccess && (
-              <>
-                <Alert
-                  message="Unable to fetch all NFT metadata... We are searching for a solution, please try again later!"
-                  type="warning"
-                />
-                <div style={{ marginBottom: "10px" }}></div>
-              </>
-            )}
             <div style={styles.banner}>
               <Image
                 preview={false}
-                src={NFTTokenIds[0]?.image || "error"}
+                src={OnceLogo || "error"}
                 fallback={fallbackImg}
                 alt=""
                 style={styles.logo}
@@ -232,7 +227,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                 cover={
                   <Image
                     preview={false}
-                    src={nft?.image || "error"}
+                    src={NFTImage || "error"}
                     fallback={fallbackImg}
                     alt=""
                     style={{ height: "240px" }}
@@ -267,7 +262,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                 cover={
                   <Image
                     preview={false}
-                    src={nft.image || "error"}
+                    src={NFTImage || "error"}
                     fallback={fallbackImg}
                     alt=""
                     style={{ height: "240px" }}
@@ -278,13 +273,13 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                 {getMarketItem(nft) && (
                   <Badge.Ribbon text="Buy Now" color="green"></Badge.Ribbon>
                 )}
-                <Meta title={nft.name} description={`#${nft.token_id}`} />
+                <Meta title={nft.name} description={`#${nft.token_id}` } />
               </Card>
             ))}
         </div>
         {getMarketItem(nftToBuy) ? (
           <Modal
-            title={`Buy ${nftToBuy?.name} #${nftToBuy?.token_id}`}
+            title={`Buy ${nftToBuy?.name} #${nftToBuy?.token_id}-Payout in case of death: ${getMarketItem(nftToBuy).price / ("1e" + 18)} Matic`}
             visible={visible}
             onCancel={() => setVisibility(false)}
             onOk={() => purchase()}
@@ -304,7 +299,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                   } ${nativeName}`}
                 >
                   <img
-                    src={nftToBuy?.image}
+                    src={NFTImage}
                     style={{
                       width: "250px",
                       borderRadius: "10px",
@@ -323,7 +318,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
             onOk={() => setVisibility(false)}
           >
             <img
-              src={nftToBuy?.image}
+              src={NFTImage || "error"}
               style={{
                 width: "250px",
                 margin: "auto",
