@@ -145,7 +145,7 @@ function NFTBalance() {
   function addItemImage() {
     const itemImage = new ItemImage();
 
-    itemImage.set("image", nftToSend.image);
+    itemImage.set("image", NFTImage);
     itemImage.set("nftContract", nftToSend.token_address);
     itemImage.set("tokenId", nftToSend.token_id);
     itemImage.set("name", nftToSend.name);

@@ -24,7 +24,7 @@ function NFTMarketTransactions() {
       "image",
     ])
   );
-  const queryMarketItems = useMoralisQuery("MarketItems");
+  const queryMarketItems = useMoralisQuery("itemAddedForSale");
   const fetchMarketItems = JSON.parse(
     JSON.stringify(queryMarketItems.data, [
       "updatedAt",
@@ -85,7 +85,7 @@ function NFTMarketTransactions() {
       key: "collection",
       render: (text, record) => (
         <Space size="middle">
-          <span>{getName(record.collection, record.item)}</span>
+          <span> Once Assurance NFTs </span>
         </Space>
       ),
     },
