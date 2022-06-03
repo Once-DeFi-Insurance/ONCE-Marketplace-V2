@@ -197,7 +197,7 @@ function NFTBalance() {
               }
               key={index}
             >
-              <Meta title={nft.name} description={nft.contract_type} />
+              <Meta title={nft.name} description={`#${nft.token_id}`}/>
             </Card>
           ))}
       </div>

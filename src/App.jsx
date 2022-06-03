@@ -19,6 +19,7 @@ import "./style.css";
 import Text from "antd/lib/typography/Text";
 import NFTMarketTransactions from "components/NFTMarketTransactions";
 import Wallet from "components/Wallet";
+import Buy from "components/Buy";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -88,10 +89,13 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/nftBalance">🖼 Your Insurances</NavLink>
             </Menu.Item>
             <Menu.Item key="transactions">
-              <NavLink to="/Transactions">📑 Your Transactions</NavLink>
+              <NavLink to="/Transactions">💳 Your Transactions</NavLink>
             </Menu.Item>
             <Menu.Item key="wallet">
               <NavLink to="/wallet">⛩️ Mint Once</NavLink>
+            </Menu.Item>
+            <Menu.Item key="buy">
+              <NavLink to="/buy">📝 Buy insurances</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
@@ -113,6 +117,9 @@ const App = ({ isServerInfo }) => {
             </Route>
             <Route path="/wallet">
               <Wallet />
+            </Route>
+            <Route path="/buy">
+              <Buy />
             </Route>
           </Switch>
           <Redirect to="/NFTMarketPlace" />
