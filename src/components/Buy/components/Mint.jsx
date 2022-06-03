@@ -131,7 +131,7 @@ function Transfer() {
           onClick={() => transfer()}
           disabled={!tx}
         >
-          Mint your insurance NFT🕺
+          Buy insurance NFT🕺
         </Button>
       </div>
     </div>
