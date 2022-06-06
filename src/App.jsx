@@ -12,6 +12,7 @@ import Account from "components/Account";
 import Chains from "components/Chains";
 import NFTBalance from "components/NFTBalance";
 import NFTTokenIds from "components/NFTTokenIds";
+import QuickStart from "components/QuickStart";
 import { Menu, Layout, Image} from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
@@ -20,6 +21,7 @@ import Text from "antd/lib/typography/Text";
 import NFTMarketTransactions from "components/NFTMarketTransactions";
 import Wallet from "components/Wallet";
 import Buy from "components/Buy";
+import KYC from "components/KYC";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -97,6 +99,9 @@ const App = ({ isServerInfo }) => {
             <Menu.Item key="buy">
               <NavLink to="/buy">📝 Buy insurances</NavLink>
             </Menu.Item>
+            <Menu.Item key="kyc">
+              <NavLink to="/kyc">👨‍💻 KYC</NavLink>
+            </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
             <Chains />
@@ -120,6 +125,9 @@ const App = ({ isServerInfo }) => {
             </Route>
             <Route path="/buy">
               <Buy />
+            </Route>
+            <Route path="/kyc">
+              <QuickStart />
             </Route>
           </Switch>
           <Redirect to="/NFTMarketPlace" />

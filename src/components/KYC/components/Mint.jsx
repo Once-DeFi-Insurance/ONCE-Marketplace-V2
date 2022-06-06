@@ -107,6 +107,7 @@ function Transfer() {
     },
   });
   }
+  
 
   return (
     <div style={styles.card}>
@@ -126,6 +127,7 @@ function Transfer() {
         <Button
           type="primary"
           size="large"
+          loading={isPending}
           style={{ width: "100%", marginTop: "25px" }}
           onClick={() => transfer()}
           disabled={!tx}
@@ -133,6 +135,7 @@ function Transfer() {
           Buy insurance NFT🕺
         </Button>
       </div>
+      
     </div>
   );
 }

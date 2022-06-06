@@ -1,4 +1,5 @@
 import { Card, Timeline, Typography } from "antd";
+import { Button, Input } from "antd";
 import React, { useMemo } from "react";
 import { useMoralis } from "react-moralis";
 
@@ -32,174 +33,58 @@ export default function QuickStart({ isServerInfo }) {
 
   return (
     <div style={{ display: "flex", gap: "10px" }}>
-      <Card style={styles.card} title={<h1 style={styles.title}>📝 To-Do List</h1>}>
+      <Card style={styles.card} title={<h1 style={styles.title}>👨‍💻 KYC workflow</h1>}>
         <Timeline mode="left" style={styles.timeline}>
           <Timeline.Item dot="📄">
-            <Text delete style={styles.text}>
-              Clone or fork{" "}
-              <a
-                href="https://github.com/ethereum-boilerplate/ethereum-boilerplate#-quick-start"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                ethereum-boilerplate
-              </a>{" "}
-            </Text>
-          </Timeline.Item>
-
-          <Timeline.Item dot="💿">
-            <Text delete style={styles.text}>
-              Install all dependencies: <Text code>npm install</Text>
-            </Text>
-          </Timeline.Item>
-
-          <Timeline.Item dot="🧰">
             <Text delete={isServerInfo} style={styles.text}>
-              Sign up for a free account on{" "}
-              <a
-                href="https://moralis.io?utm_source=boilerplatehosted&utm_medium=todo&utm_campaign=ethereum-boilerplate"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Moralis
-              </a>
+            Before you are able to mint a NFT insurance, you may to go through a KYC process so  we can ensure the credibility and security of the protocol.
             </Text>
           </Timeline.Item>
-
-          <Timeline.Item dot="💾">
-            <Text delete={isServerInfo} style={styles.text}>
-              Create a Moralis Server (
-              <a
-                href="https://docs.moralis.io/moralis-server/getting-started/create-a-moralis-server"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                How to start Moralis Server
-              </a>
-              )
-            </Text>
-          </Timeline.Item>
-
           <Timeline.Item dot="🔏">
             <Text delete={isServerInfo} style={styles.text}>
-              Rename <Text code>.env.example</Text> to <Text code>.env</Text> and provide your{" "}
-              <Text strong>appId</Text> and <Text strong>serverUrl</Text> from{" "}
-              <a
-                href="https://moralis.io?utm_source=boilerplatehosted&utm_medium=todo&utm_campaign=ethereum-boilerplate"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Moralis
-              </a>
-              :
-            </Text>
-            <Text code delete={isServerInfo} style={{ display: "block" }}>
-              REACT_APP_MORALIS_APPLICATION_ID = xxxxxxxxxxxx
-            </Text>
-            <Text code delete={isServerInfo} style={{ display: "block" }}>
-              REACT_APP_MORALIS_SERVER_URL = https://xxxxxx.grandmoralis.com:2053/server
+            Once Assurance believes and strives to maintain user <Text code>privacy</Text>: sensitive information will not be shared.
             </Text>
           </Timeline.Item>
-
+          <Timeline.Item dot="🧰">
+            <Text delete={isServerInfo} style={styles.text}>
+              The information provided by the KYC will be used as a <Text code>"life validation"</Text>, ensuring that policyholders are real people and linking your data with your Polygon Address.
+            </Text>
+          </Timeline.Item>
           <Timeline.Item dot="🔁">
             <Text delete={isServerInfo} style={styles.text}>
-              Stop the app and start it again <Text code>npm run start</Text>
-            </Text>
-          </Timeline.Item>
-
-          <Timeline.Item dot="💿">
-            <Text delete={isInchDex} style={styles.text}>
-              Install{" "}
-              <a
-                href="https://moralis.io/plugins/1inch/?utm_source=boilerplatehosted&utm_medium=todo&utm_campaign=ethereum-boilerplate"
+              For the <a
+                href="https://verify-with.blockpass.org/?clientId=once_assurance_1031d&serviceName=Once%20Assurance&env=prod"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                1inch Moralis Plugin
-              </a>{" "}
-              needed for the<Text code>{"<InchDex />"}</Text> component (optional)
+                KYC
+              </a> process, in addition to all the information asked, you SHALL take your picture holding a piece of paper with your <Text code>Polygon Address</Text> written on it to.
+
+            </Text>
+            <Text delete={isServerInfo} style={{ display: "block", fontSize: "16px"}}>
+              Furthermore, in the field <Text code>"Family Name"</Text> you SHALL write you <Text code>Polygon Address</Text>.
             </Text>
           </Timeline.Item>
 
-          <Timeline.Item dot="🚀">
-            <Text style={styles.text}>BUIDL!!!</Text>
+          <Timeline.Item dot="🤝">
+            <Text delete={isServerInfo} style={styles.text}>
+            We ask for 24 hours to validate your order and approve your address for the NFT minting feature 😊.
+            </Text>
           </Timeline.Item>
         </Timeline>
+        <Button
+          type="primary"
+          size="large"
+          style={{ width: "30%", marginTop: "25px", marginLeft: "34%" }}
+          href="https://verify-with.blockpass.org/?clientId=once_assurance_1031d&serviceName=Once%20Assurance&env=prod"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          KYC🚀
+        </Button>
+
       </Card>
       <div>
-        <Card
-          style={styles.card}
-          title={<h1 style={styles.title}>💣 Starting Local Chain (optional)</h1>}
-        >
-          <Timeline mode="left" style={styles.timeline}>
-            <Timeline.Item dot="💿">
-              <Text style={styles.text}>
-                Install{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://www.npmjs.com/package/truffle"
-                >
-                  Truffle
-                </a>{" "}
-                and{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://www.npmjs.com/package/ganache-cli"
-                >
-                  ganache-cli
-                </a>{" "}
-                <Text code>npm install -g ganache-cli truffle</Text>
-              </Text>
-            </Timeline.Item>
-            <Timeline.Item dot="⚙️">
-              <Text style={styles.text}>
-                Start you local devchain: <Text code>npm run devchain</Text> on a new terminal
-              </Text>
-            </Timeline.Item>
-            <Timeline.Item dot="📡">
-              <Text style={styles.text}>
-                Deploy test contract: <Text code>npm run deploy</Text> on a new terminal
-              </Text>
-            </Timeline.Item>
-            <Timeline.Item dot="✅" style={styles.text}>
-              <Text>
-                Open the <Text strong>📄 Contract</Text> tab
-              </Text>
-            </Timeline.Item>
-          </Timeline>
-        </Card>
-        <Card
-          style={{ marginTop: "10px", ...styles.card }}
-          title={<h1 style={styles.title}>📡 Connecting your Local Chain to the Moralis DB</h1>}
-        >
-          <Timeline mode="left" style={styles.timeline}>
-            <Timeline.Item dot="💿">
-              <Text style={styles.text}>
-                Download{" "}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://github.com/fatedier/frp/releases"
-                >
-                  frpc
-                </a>{" "}
-                and provide missing params in the <Text code>.env</Text> file
-              </Text>
-            </Timeline.Item>
-            <Timeline.Item dot="⚙️">
-              <Text style={styles.text}>
-                Connect your Moralis Database and Local Chain: <Text code>npm run connect</Text>
-              </Text>
-            </Timeline.Item>
-            <Timeline.Item dot="💾">
-              <Text style={styles.text}>
-                Add contract events you want to watch: <Text code>npm run watch:events</Text>
-              </Text>
-            </Timeline.Item>
-          </Timeline>
-        </Card>
       </div>
     </div>
   );
