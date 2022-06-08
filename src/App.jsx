@@ -97,7 +97,7 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/wallet">⛩️ Mint Once</NavLink>
             </Menu.Item>
             <Menu.Item key="buy">
-              <NavLink to="/buy">📝 Buy insurances</NavLink>
+              <NavLink to="/buy">📝 Buy insurance</NavLink>
             </Menu.Item>
             <Menu.Item key="kyc">
               <NavLink to="/kyc">👨‍💻 KYC</NavLink>
