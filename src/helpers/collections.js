@@ -62,7 +62,7 @@ export const networkCollections = {
       image:
         "https://lh3.googleusercontent.com/LIov33kogXOK4XZd2ESj29sqm_Hww5JSdO7AFn5wjt8xgnJJ0UpNV9yITqxra3s_LMEW1AnnrgOVB_hDpjJRA1uF4skI5Sdi_9rULi8=s0",
       name: "Once Marketplace",
-      addrs: "0x0D40d2E193A9B19C1Bb0FA587bdc73f0454f084a",
+      addrs: "0x447dAEFfeD05280f724A7857Fa0568b0AAb27B99",
     },
   ],
 };

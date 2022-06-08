@@ -41,12 +41,16 @@ contract OnceToken is ERC721Enumerable{
   event insuredGranted(uint256 id, address insured);
 
   mapping(uint256 => Insured) public Insureds;
+  
+  //here we link one address with personal information (name, age, country etc..)
+  mapping(address => string) public personInformation;
 
   //So here, with the the governance address, we grant for the user the possibility to mint Once NFTs (after checking the KYC):
-  function grantInsuranceMint(address _address) public returns(uint256){
+  function grantInsuranceMint(address _address, string memory uri) public returns(uint256){
     require(msg.sender == ownerGovernance, "Only the DAO governance can set this role");
     require(exists1(_address) == false, "This address already is granted");
     _insuredIds.increment();
+    personInformation[_address] = uri;
     uint256 newInsuredId = _insuredIds.current();
     Insureds[newInsuredId] = Insured ({
       id: newInsuredId,
@@ -63,6 +67,10 @@ contract OnceToken is ERC721Enumerable{
     delete Insureds[num];
   }
 
+  //return insured personal information by address:
+  function fetchPersonalInformation(address _address) public view returns(string memory){
+    return personInformation[_address];
+  }
   //return Insured address by Id:
   function fetchInsured(uint256 num) public view returns(address){
     return Insureds[num].insured;
@@ -151,10 +159,6 @@ contract OnceToken is ERC721Enumerable{
 
   function fetchPayoutAmount(uint256 tokenId) public view returns (uint256){
     return Items[tokenId].payout;
-  }
-
-  function fetchTokensIds() public view returns(uint256){
-      return _tokenIds.current();
   }
 
   uint256 poolFee = 0.01 ether;

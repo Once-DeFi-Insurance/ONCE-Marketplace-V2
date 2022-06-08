@@ -18,7 +18,7 @@ export const useNFTTokenIds = (addr) => {
     isLoading,
   } = useMoralisWeb3ApiCall(token.getAllTokenIds, {
     chain: chainId,
-    address: "0x0D40d2E193A9B19C1Bb0FA587bdc73f0454f084a",
+    address: "0x447dAEFfeD05280f724A7857Fa0568b0AAb27B99",
     limit: 20,
   });
 
