@@ -22,6 +22,7 @@ import NFTMarketTransactions from "components/NFTMarketTransactions";
 import Wallet from "components/Wallet";
 import Buy from "components/Buy";
 import KYC from "components/KYC";
+import IPFS from "components/IPFS";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -97,10 +98,13 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/wallet">⛩️ Mint Once</NavLink>
             </Menu.Item>
             <Menu.Item key="buy">
-              <NavLink to="/buy">📝 Buy insurances</NavLink>
+              <NavLink to="/buy">📝 Buy Insurances</NavLink>
             </Menu.Item>
             <Menu.Item key="kyc">
               <NavLink to="/kyc">👨‍💻 KYC</NavLink>
+            </Menu.Item>
+            <Menu.Item key="searcher">
+              <NavLink to="/searcher">🔎 Once Searcher</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
@@ -128,6 +132,9 @@ const App = ({ isServerInfo }) => {
             </Route>
             <Route path="/kyc">
               <QuickStart />
+            </Route>
+            <Route path="/searcher">
+              <IPFS />
             </Route>
           </Switch>
           <Redirect to="/NFTMarketPlace" />

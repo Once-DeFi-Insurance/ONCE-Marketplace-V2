@@ -1,5 +1,6 @@
 import { CreditCardOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
+import { ethers } from "ethers";
 import Text from "antd/lib/typography/Text";
 import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
@@ -9,7 +10,7 @@ import { useWeb3ExecuteFunction } from "react-moralis";
 import AddressInput from "../../AddressInput";
 import AssetSelector from "./AssetSelector";
 import { PolygonCurrency} from "../../Chains/Logos";
-import { ethers } from "ethers";
+var bigInt = require("big-integer");
 
 const pinataSDK = require('@pinata/sdk');
 const pinata = pinataSDK(`32459721f4b813b4a6a7`, '344be49e109a8d33d12ebd8f7a1a487571dd2c706501c88e28044e69f9c44082');
@@ -57,36 +58,34 @@ function Transfer() {
   const [amount, setAmount] = useState();
   const [premium, setPremium] = useState();
   const [isPending, setIsPending] = useState(false);
-  const [address, setAddress] = useState();
-  const { walletAddress } = useMoralisDapp();
   const { chainId, marketAddress, contractABI } = useMoralisDapp();
   const contractProcessor = useWeb3ExecuteFunction(); 
   const contractABIJson = JSON.parse(contractABI);
-  const mintFunction = "mint";
-  const personalInformation = "fetchPersonalInformation";
+  const buyInsuranceFunction = "buyInsurance";
+  const payoutFunction = "fetchPayoutAmount";
   const uriParam = "putTextHere";
   const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/Ro7eQs-KgNh3Itbh2mxAD9oHznDnZ8wQ");
   const signer = new ethers.Wallet("5198b0a7dcca89723ec98c4fedde2cc1875594961e209499daa888c41dd31d8e", provider);
-  let finald = "NA";
-  let uri = "NA";
 
   useEffect(() => {
     amount? setTx({ amount }) : setTx();
   }, [amount]);
 
-  async function fetchPerson() {
+  
+  async function fetchPayout() {
     const returnContract = new ethers.Contract(marketAddress, contractABI, signer);
-    const data = await returnContract.fetchPersonalInformation(walletAddress)
+    const data = await returnContract.fetchPayoutAmount(amount)
     return data
   }
 
-  async function uploadIPFS() {
-    const body = {
-      description: finald
-    };
-    const options = {
+  async function transfer() {
+
+  const body = {
+      description: 'Bruno Santos; 27/02/1999; Uruguay'
+  };
+  const options = {
       pinataMetadata: {
-          name: 'OnceAssurance',
+          name: 'MyCustomName',
           keyvalues: {
               customKey: 'customValue',
               customKey2: 'customValue2'
@@ -95,93 +94,75 @@ function Transfer() {
       pinataOptions: {
           cidVersion: 0
       }
-    };
-    await pinata.pinJSONToIPFS(body, options).then((result) => {
-       //handle results here
-        uri = String(result.IpfsHash);
-        console.log(result.IpfsHash);
-        return result.IpfsHash
-      }).catch((err) => {
-        //handle error here
-        console.log(err);
-      });
-    }
-
-
-  async function transfer() {
-    await fetchPerson().then(data =>{
-       finald = String(data);
-       console.log(finald);
-       return String(data)
+  };
+  pinata.pinJSONToIPFS(body, options).then((result) => {
+      //handle results here
+      console.log(result.IpfsHash);
+  }).catch((err) => {
+      //handle error here
+      console.log(err);
   });
-    await uploadIPFS()
-    let finalUri = `https://gateway.pinata.cloud/ipfs/${uri}`
-    const ops = {
-        contractAddress: marketAddress,
-        functionName: mintFunction,
-        abi: contractABIJson,
-        msgValue: Moralis.Units.ETH((premium).toString()),
-        params: {
-          uri: finalUri,
-          _payout: Moralis.Units.ETH((amount).toString()),
-        },
-      };
-    
-      await contractProcessor.fetch({
-        params: ops,
-        onSuccess: () => {
-          console.log("success");
-          setIsPending(false);       
-        },
-        onError: (error) => {
-          setIsPending(false);
-          alert(error);
-        },
-      });
-    
+
+    let finald = 1;
+    await fetchPayout().then(data =>{
+       
+       finald = Number(data);
+       return Number(data)
+  });
+
+  console.log(finald);
+  const ops = {
+    contractAddress: marketAddress,
+    functionName: buyInsuranceFunction,
+    abi: contractABIJson,
+    msgValue: finald,
+    params: {
+      tokenId: amount
+    },
+  };
+
+  await contractProcessor.fetch({
+    params: ops,
+    onSuccess: () => {
+      console.log("success");
+      setIsPending(false);       
+    },
+    onError: (error) => {
+      setIsPending(false);
+      alert(error);
+    },
+  });
   }
+  
 
   return (
     <div style={styles.card}>
       <div style={styles.tranfer}>
         <div style={styles.header}>
-          <h3>Set the payout amount in case of death:</h3>
+          <h3>Set the Once NFT token id from which you want to get details</h3>
         </div>
         <div style={styles.select}>
           <Input
             size="large"
-            prefix={<PolygonCurrency/>}
+            prefix="#️⃣"
             onChange={(e) => {
               setAmount(`${e.target.value}`);
             }}
           />
         </div>
-        <div style={styles.header}>
-          <h3 style={{color: '#fff'}}>...</h3>
-        </div>
-        <div style={styles.header}>
-          <h3 style={{paddingBottom: "0px"}}>Set the insurance premium (msg.value):</h3>
-        </div>
-        <div style={styles.select}>
-          <Input
-            size="large"
-            prefix={<PolygonCurrency/>}
-            onChange={(e) => {
-              setPremium(`${e.target.value}`);
-            }}
-          />
-        </div>
         <Button
-          type="primary"
-          size="large"
-          loading={isPending}
-          style={{ width: "100%", marginTop: "25px" }}
-          onClick={() => transfer()}
-          disabled={!tx}
-        >
-          Mint your insurance NFT🕺
+        type="primary"
+        size="large"
+        style={{ width: "40%", marginTop: "25px", marginLeft: "31%" }}
+        href={`https://api.covalenthq.com/v1/80001/tokens/0x447dAEFfeD05280f724A7857Fa0568b0AAb27B99/nft_metadata/${amount}/?key=ckey_9424e31e6b6a47fe82f0cae48d7`}
+        target="_blank"
+        rel="noopener noreferrer"
+        disabled={!tx}
+      >
+          Search it 🕵️
         </Button>
       </div>
+      
     </div>
   );
 }
