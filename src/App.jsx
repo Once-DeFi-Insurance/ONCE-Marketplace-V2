@@ -13,6 +13,7 @@ import Chains from "components/Chains";
 import NFTBalance from "components/NFTBalance";
 import NFTTokenIds from "components/NFTTokenIds";
 import QuickStart from "components/QuickStart";
+import ClaimInsurance from "components/ClaimInsurance";
 import { Menu, Layout, Image} from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
@@ -72,7 +73,6 @@ const App = ({ isServerInfo }) => {
     <Layout style={{ height: "100vh", overflow: "auto" }}>
       <Router>
         <Header style={styles.header}>
-          <Logo />
           <Menu
             theme="light"
             mode="horizontal"
@@ -94,17 +94,20 @@ const App = ({ isServerInfo }) => {
             <Menu.Item key="transactions">
               <NavLink to="/Transactions">💳 Your Transactions</NavLink>
             </Menu.Item>
+            <Menu.Item key="kyc">
+              <NavLink to="/kyc">👨‍💻 KYC</NavLink>
+            </Menu.Item>
             <Menu.Item key="wallet">
               <NavLink to="/wallet">⛩️ Mint Once</NavLink>
             </Menu.Item>
             <Menu.Item key="buy">
               <NavLink to="/buy">📝 Buy Insurances</NavLink>
             </Menu.Item>
-            <Menu.Item key="kyc">
-              <NavLink to="/kyc">👨‍💻 KYC</NavLink>
-            </Menu.Item>
             <Menu.Item key="searcher">
               <NavLink to="/searcher">🔎 Once Searcher</NavLink>
+            </Menu.Item>
+            <Menu.Item key="claimInsurance">
+              <NavLink to="/claimInsurance">💀 Claim Insurance</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
@@ -135,6 +138,9 @@ const App = ({ isServerInfo }) => {
             </Route>
             <Route path="/searcher">
               <IPFS />
+            </Route>
+            <Route path="/claimInsurance">
+              <ClaimInsurance />
             </Route>
           </Switch>
           <Redirect to="/NFTMarketPlace" />

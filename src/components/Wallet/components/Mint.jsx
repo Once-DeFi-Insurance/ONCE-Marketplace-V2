@@ -49,6 +49,7 @@ const styles = {
   },
 };
 
+
 function Transfer() {
   const { Moralis } = useMoralis();
   const [receiver, setReceiver] = useState();
@@ -182,6 +183,7 @@ function Transfer() {
           Mint your insurance NFT🕺
         </Button>
       </div>
+      <h6 style={{paddingBottom: "0px"}}>*You must go through the KYC before being able to mint an insurance</h6>
     </div>
   );
 }

@@ -153,6 +153,8 @@ function NFTBalance() {
     itemImage.save();
   }
 
+  
+
   return (
     <>
       <div style={styles.NFTs}>
