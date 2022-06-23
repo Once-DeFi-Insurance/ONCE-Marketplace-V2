@@ -183,7 +183,18 @@ function NFTMarketTransactions() {
             <Text  style={styles.text}>
               This is a demonstration, set your age and gender and get the premium percentage based on the total insured amount.
             </Text>
-          </Timeline.Item>
+            </Timeline.Item>
+            <Timeline.Item dot="🐞">
+            <Text  style={styles.text}>
+              If you dont get any premium, please make sure you have installed the <a
+                href="https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >CORS chrome extension </a>
+            </Text>
+            </Timeline.Item>
+
+
         </Timeline>
       </Card>
       <div>
