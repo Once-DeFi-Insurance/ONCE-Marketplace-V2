@@ -92,7 +92,7 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/nftBalance">🖼 Your Insurances</NavLink>
             </Menu.Item>
             <Menu.Item key="transactions">
-              <NavLink to="/Transactions">💳 Your Transactions</NavLink>
+              <NavLink to="/Transactions">🧮 Your Transactions</NavLink>
             </Menu.Item>
             <Menu.Item key="kyc">
               <NavLink to="/kyc">👨‍💻 KYC</NavLink>

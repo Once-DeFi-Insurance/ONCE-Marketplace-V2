@@ -1,14 +1,37 @@
 import React, { useState } from "react";
 import { useMoralis, useMoralisQuery } from "react-moralis";
+import { Card, Timeline, Typography } from "antd";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { Table, Tag, Space } from "antd";
 import { PolygonCurrency} from "./Chains/Logos";
 import moment from "moment";
+import PremiumCalculator from "./PremiumCalculator";
+
+const { Text } = Typography;
 
 const styles = {
   table: {
     margin: "0 auto",
     width: "1000px",
+  },
+  calculator: {
+    marginLeft: "27%",
+    marginBottom: "10%"
+  },
+  title: {
+    fontSize: "20px",
+    fontWeight: "700",
+  },
+  text: {
+    fontSize: "16px",
+  },
+  card: {
+    boxShadow: "0 0.5rem 1.2rem rgb(189 197 209 / 20%)",
+    border: "1px solid #e7eaf3",
+    borderRadius: "0.5rem",
+  },
+  timeline: {
+    marginBottom: "-45px",
   },
 };
 
@@ -141,10 +164,40 @@ function NFTMarketTransactions() {
 
   return (
     <>
+    <div>
+
+      <div style={{ display: "flex", gap: "10px", marginBottom: "40px" }}>
+      <Card style={styles.card} title={<h1 style={styles.title}>💻 Insurance Premium calculator</h1>}>
+        <Timeline mode="left" style={styles.timeline}>
+          <Timeline.Item dot="📄">
+            <Text  style={styles.text}>
+            An <Text code>insurance premium</Text> is the amount you pay for an insurance policy. 
+            </Text>
+          </Timeline.Item>
+          <Timeline.Item dot="🔏">
+            <Text  style={styles.text}>
+            The once assurance protocol has a risk management algorithm based on its liquidity pool, thus having an automated calculator to assign your premium.
+            </Text>
+          </Timeline.Item>
+          <Timeline.Item dot="🧰">
+            <Text  style={styles.text}>
+              This is a demonstration, set your age and gender and get the premium percentage based on the total insured amount.
+            </Text>
+          </Timeline.Item>
+        </Timeline>
+      </Card>
       <div>
+      </div>
+    </div>
+      
+        
+      <div style={styles.calculator}>
+        <PremiumCalculator />
+        </div>
         <div style={styles.table}>
           <Table columns={columns} dataSource={data} />
         </div>
+        
       </div>
     </>
   );
