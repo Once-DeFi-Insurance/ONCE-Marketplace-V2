@@ -89,10 +89,10 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/NFTMarketPlace">🛒 Once Marketplace</NavLink>
             </Menu.Item>
             <Menu.Item key="nft">
-              <NavLink to="/nftBalance">🖼 Your Insurances</NavLink>
+              <NavLink to="/nftBalance">🖼 Your insurances</NavLink>
             </Menu.Item>
             <Menu.Item key="transactions">
-              <NavLink to="/Transactions">🧮 Your Transactions</NavLink>
+              <NavLink to="/Transactions">🧮 Premium calculator</NavLink>
             </Menu.Item>
             <Menu.Item key="kyc">
               <NavLink to="/kyc">👨‍💻 KYC</NavLink>
@@ -101,13 +101,13 @@ const App = ({ isServerInfo }) => {
               <NavLink to="/wallet">⛩️ Mint Once</NavLink>
             </Menu.Item>
             <Menu.Item key="buy">
-              <NavLink to="/buy">📝 Buy Insurances</NavLink>
+              <NavLink to="/buy">📝 Buy insurances</NavLink>
             </Menu.Item>
             <Menu.Item key="searcher">
-              <NavLink to="/searcher">🔎 Once Searcher</NavLink>
+              <NavLink to="/searcher">🔎 Once searcher</NavLink>
             </Menu.Item>
             <Menu.Item key="claimInsurance">
-              <NavLink to="/claimInsurance">💀 Claim Insurance</NavLink>
+              <NavLink to="/claimInsurance">💀 Claim insurance</NavLink>
             </Menu.Item>
           </Menu>
           <div style={styles.headerRight}>
